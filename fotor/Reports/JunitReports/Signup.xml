@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.676">
+    <testcase classname="User should able to edit the Image, change Langauage , Signin and Signup" name="user should successfully SignUp" time="7.445">
+        <system-out><![CDATA[Given navigated to fotor url................................................passed
+When user should click on signup link and select signup with google.........passed
+And user should enter emailId and password..................................passed
+Then user should navigated to HomePage......................................passed
+]]></system-out>
+    </testcase>
+</testsuite>

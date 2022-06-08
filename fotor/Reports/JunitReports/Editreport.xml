@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="48.863">
+    <testcase classname="User should able to edit the Image, change Langauage , Signin and Signup" name="user should be able to successfully edit the image" time="48.679">
+        <system-out><![CDATA[Given user should be navigated to fotor editor page.........................passed
+When user clicks on signin button...........................................passed
+And user Enters valid fepy@eelraodo.com and Zxcvbnm@1 and login.............passed
+Then user navigated to editor page..........................................passed
+When user uploads image.....................................................passed
+And user should able to edit image by adjust features.......................passed
+And user should able to apply effects to image..............................passed
+And user should able to add text on image...................................passed
+And user should be able to add frames to image..............................passed
+]]></system-out>
+    </testcase>
+</testsuite>
