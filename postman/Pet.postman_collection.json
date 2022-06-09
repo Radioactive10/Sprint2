@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "61d6637f-7d24-4207-8e72-2c8b8c7c534a",
+		"name": "Pet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21164961"
+	},
+	"item": [
+		{
+			"name": "AddPet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User firstname \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    name=jsonData.name;\r",
+							"});\r",
+							"\r",
+							"console.log(\"Added name is \",name);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"pets\", \"/v2/pet\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{id}}\",\r\n  \"category\": {\r\n    \"id\": \"{{categoryID}}\",\r\n    \"name\": \"{{name}}\"\r\n  },\r\n  \"name\": \"{{petname}}\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": \"{{tagid}}\",\r\n      \"name\": \"{{tagname}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{pets}}",
+					"host": [
+						"{{url}}{{pets}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateExisPet",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"pets\", \"/v2/pet\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{id}}\",\r\n  \"category\": {\r\n    \"id\": \"{{catgoryid}}\",\r\n    \"name\": \"{{catname}}\"\r\n  },\r\n  \"name\": \"{{name}}\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": \"{{tagid}}\",\r\n      \"name\": \"{{tagname}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{pets}}",
+					"host": [
+						"{{pets}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETPetByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your id code is :\", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"     uid = jsonData.id;\r",
+							"    pm.expect(jsonData.id).to.eql(13);\r",
+							"});\r",
+							"    console.log(\"The id is:\",uid);\r",
+							"pm.test(\"If else\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    if(pm.expect(jsonData.name).to.eql(\"dog\")) {\r",
+							"        pet=jsonData.name;\r",
+							"        console.log(\"Pet is \",pet);\r",
+							"    } else {\r",
+							"        console.log(\"Pet is other than charlie\")\r",
+							"    }\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{pets}}/13",
+					"host": [
+						"{{url}}{{pets}}"
+					],
+					"path": [
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetByStatus",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"statuspet\", \"/findByStatus?status\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}{{pets}}{{statuspet}}=pending",
+					"host": [
+						"{{url}}{{pets}}{{statuspet}}=pending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Uploadpetimages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your upload status is :\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    message=jsonData.message;\r",
+							"});\r",
+							"\r",
+							"console.log(message);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"img\", \"uploadImage\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "FTLiQImTO/Abstract-Wallpaper-1080x1920.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/13/{{img}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"13",
+						"{{img}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    message=jsonData.message;\r",
+							"});\r",
+							"\r",
+							"console.log(message);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}{{pets}}/14",
+					"host": [
+						"{{url}}{{pets}}"
+					],
+					"path": [
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"del\", \"v2/pet/12\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://773f7fda-23be-4d00-8af1-2d6886680de5.mock.pstmn.io/{{del}}",
+					"protocol": "https",
+					"host": [
+						"773f7fda-23be-4d00-8af1-2d6886680de5",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"{{del}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DeletePET",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pet/12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet",
+								"12"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "Successfully  Deleted Pet."
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "abc123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "petstore",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is All\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204,400,404,415,500])",
+					"});",
+					"",
+					"",
+					"pm.test(\"Response time is \", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"});",
+					"",
+					""
+				]
+			}
+		}
+	]
+}

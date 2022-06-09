@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "c3fca528-ee71-4aa6-b4d3-58814e4b1985",
+		"name": "Neagative",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21164961"
+	},
+	"item": [
+		{
+			"name": "FindBysataus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 55,\r\n    \"category\": {\r\n      \"id\": 2217,\r\n      \"name\": \"string\"\r\n    },\r\n    \"name\": \"Ryan\",\r\n    \"photoUrls\": [\r\n      \"string\"\r\n    ],\r\n    \"tags\": [\r\n      {\r\n        \"id\": 22,\r\n        \"name\": \"string\"\r\n      }\r\n    ],\r\n    \"status\": \"pending\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{pets}}/findByStatus",
+					"host": [
+						"{{url}}{{pets}}"
+					],
+					"path": [
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "sold",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletestore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    message=jsonData.message;\r",
+							"});\r",
+							"\r",
+							"console.log(message);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v2/store/order/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    type=jsonData.type;\r",
+							"});\r",
+							"\r",
+							"console.log(type);\r",
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"     uid = jsonData.code;\r",
+							"    pm.expect(jsonData.code).to.eql(\"200\");\r",
+							"});\r",
+							"    console.log(\"The message is:\",uid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v2/user/login?username=test&password=abc123",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test"
+						},
+						{
+							"key": "password",
+							"value": "abc123"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

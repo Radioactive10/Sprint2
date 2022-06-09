@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "a8244e9f-704b-4ce3-b83d-4e1c2c727efe",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21164961"
+	},
+	"item": [
+		{
+			"name": "ByUserName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    message=jsonData.message;\r",
+							"     type=jsonData.type;\r",
+							"      code=jsonData.code;\r",
+							"});\r",
+							"\r",
+							"console.log(code,type,message);\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"     un = jsonData.username;\r",
+							"    pm.expect(jsonData.username).to.eql(\"michelScarn\");\r",
+							"});\r",
+							"    console.log(\"The username is:\",un);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"username\", \"user/michelScarn\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/{{username}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    message=jsonData.message;\r",
+							"     type=jsonData.type;\r",
+							"});\r",
+							"\r",
+							"console.log(message,type);\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"     uid = jsonData.message;\r",
+							"    pm.expect(jsonData.message).to.eql(\"7\");\r",
+							"});\r",
+							"    console.log(\"The message is:\",uid);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"a\", \"v2/user\");\r",
+							"pm.environment.set(\"id\" , \"7\");\r",
+							"pm.environment.set(\"un\" , \"dontknow\");\r",
+							"pm.environment.set(\"fn\" , \"Govu\");\r",
+							"pm.environment.set(\"ln\",\"govind\");\r",
+							"pm.environment.set(\"em\",\"g@gmail.com\");\r",
+							"pm.environment.set(\"pw\",\"74#4*4\");\r",
+							"pm.environment.set(\"phone\",\"7894561230\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{id}}\",\r\n  \"username\": \"{{un}}\",\r\n  \"firstName\": \"{{fn}}\",\r\n  \"lastName\": \"{{ln}}\",\r\n  \"email\": \"{{em}}\",\r\n  \"password\": \"{{pw}}\",\r\n  \"phone\": \"{{phone}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{a}}/Gabby",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{a}}",
+						"Gabby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"username\" : \"{{username}}\",\r\n        \"password\" : \"{{password}}\"\r\n\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/userlogin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"userlogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://47a262a7-3b41-4994-9c6a-8dbedcdb488f.mock.pstmn.io/#/user/deleteUser",
+					"protocol": "https",
+					"host": [
+						"47a262a7-3b41-4994-9c6a-8dbedcdb488f",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"hash": "/user/deleteUser"
+				}
+			},
+			"response": [
+				{
+					"name": "DeleteUser",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/#/user/deleteUser",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								""
+							],
+							"hash": "/user/deleteUser"
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "succesffuly deleted"
+				}
+			]
+		},
+		{
+			"name": "CreateWithArray",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2225ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2225);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\" : \"{{id}}\",\r\n        \"username\" : \"{{username}}\",\r\n        \"firstName\" : \"{{firstName}}\",\r\n        \"lastName\" : \"{{lastName}}\" ,\r\n        \"email\" : \"{{email}}\",\r\n        \"password\" : \"{{password}}\",\r\n        \"phone\" : \"{{phone}}\",\r\n        \"userStatus\" : \"{{userStatus}}\"\r\n\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/user/createWithArray",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"user",
+						"createWithArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "basicauthorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Username",
+						"value": "abc123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/oauth/login.jsp?Username=abc123",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"oauth",
+						"login.jsp"
+					],
+					"query": [
+						{
+							"key": "Username",
+							"value": "abc123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createuser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{id}}\",\r\n  \"username\": \"{{username}}\",\r\n  \"firstName\": \"{{firstname}}\",\r\n  \"lastName\": \"{{lastname}}\",\r\n   \"email\": \"{{em}}\",\r\n  \"password\": \"{{pw}}\",\r\n  \"phone\": \"{{ph}}\",\r\n \"userStatus\": \"{{userstatus}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "abc123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "test",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.globals.get(\"url\",\"https://petstore.swagger.io\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
