@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-06-08T07:41:51 IST" name="Default suite" finished-at="2022-06-08T07:42:40 IST" duration-ms="48179">
+    <groups>
+    </groups>
+    <test started-at="2022-06-08T07:41:51 IST" name="Default test" finished-at="2022-06-08T07:42:40 IST" duration-ms="48179">
+      <class name="editimage.EditImageTest">
+        <test-method is-config="true" signature="openbrowser()[pri:0, instance:editimage.EditImageTest@4738a206]" started-at="2022-06-08T07:41:51 IST" name="openbrowser" finished-at="2022-06-08T07:41:54 IST" duration-ms="2432" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openbrowser -->
+        <test-method signature="EditImage()[pri:0, instance:editimage.EditImageTest@4738a206]" started-at="2022-06-08T07:41:54 IST" name="EditImage" finished-at="2022-06-08T07:42:39 IST" duration-ms="45340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EditImage -->
+        <test-method is-config="true" signature="closebrowser()[pri:0, instance:editimage.EditImageTest@4738a206]" started-at="2022-06-08T07:42:39 IST" name="closebrowser" finished-at="2022-06-08T07:42:40 IST" duration-ms="342" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- editimage.EditImageTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
